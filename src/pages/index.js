@@ -5,9 +5,10 @@ import React, { useState } from 'react'
 import {
   Button,
   Grid,
-  TextField,
+  Hidden,
   InputBase,
   Slider,
+  TextField,
   Typography,
 } from '@material-ui/core'
 import {
@@ -100,6 +101,13 @@ const useStyles = makeStyles({
   },
   arlissNameInput: {
     fontSize: 20,
+  },
+  linkGroup: {
+    marginTop: '40px',
+  },
+  linkFont: {
+    fontSize: '8px',
+    textDecoration: 'none',
   },
 })
 
@@ -281,9 +289,15 @@ const IndexPage = () => {
           alignContent='center'
           spacing={3}
         >
-          <Grid className={classes.heroImageContainer} item>
-            <img className={classes.heroImage} src={baseball} alt='Baseball' />
-          </Grid>
+          <Hidden xsDown>
+            <Grid className={classes.heroImageContainer} item show>
+              <img
+                className={classes.heroImage}
+                src={baseball}
+                alt='Baseball'
+              />
+            </Grid>
+          </Hidden>
           <Grid className={classes.title} item xs={12}>
             <Typography
               className={classes.titleFont}
@@ -455,6 +469,38 @@ const IndexPage = () => {
             >
               Clear
             </Button>
+          </Grid>
+          <Grid
+            className={classes.linkGroup}
+            item
+            xs={10}
+            md={8}
+            lg={6}
+            container
+            direction='row'
+            justify='flex-end'
+          >
+            <Typography
+              className={classes.linkFont}
+              variant='body2'
+              color='primary'
+              align='right'
+            >
+              Watch the{' '}
+              <a
+                className={classes.linkFont}
+                href='https://twitter.com/GLucasTalkShow'
+              >
+                George Lucas Talk Show
+              </a>
+              <br />
+              <a
+                className={classes.linkFont}
+                href='https://github.com/mstubna/arliss.me'
+              >
+                Source
+              </a>
+            </Typography>
           </Grid>
         </Grid>
       </div>
