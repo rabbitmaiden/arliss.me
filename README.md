@@ -2,9 +2,11 @@
 
 [Arli$$](https://en.wikipedia.org/wiki/Arliss) was a TV show than ran on HBO from 1996 to 2002.
 
-This app can be used to generate Arli$$-like names for yourself.
+This app can be used to generate Arli$$-like names for yourself. Credit to [George Lucas Talk Show](https://twitter.com/GLucasTalkShow) for the idea!
 
 See <https://arliss.me>
+
+## Made with [Gatsby](https://www.gatsbyjs.org/)
 
 - `npm run develop` -- Run dev server; browse to <http://localhost:8000>
 - `npm run build` -- Creates a production build
