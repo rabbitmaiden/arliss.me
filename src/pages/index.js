@@ -15,12 +15,12 @@ import {
   makeStyles,
   ThemeProvider,
 } from '@material-ui/core/styles'
+import baseball from '../images/baseball.png'
 import faker from 'faker'
 import { times, findIndex } from 'lodash'
 
 const hFonts = {
   fontFamily: "'Montserrat', 'Helvetica', 'Arial', sans-serif",
-  // fontWeight: 500
 }
 const theme = createMuiTheme({
   typography: {
@@ -33,17 +33,27 @@ const theme = createMuiTheme({
     h4: hFonts,
     h5: hFonts,
     h6: hFonts,
+    subtitle1: hFonts,
   },
   palette: {
-    primary: { main: '#ff1744' },
+    primary: { main: '#7C102C' },
     secondary: { main: '#616161' },
     text: { primary: '#424242' },
   },
 })
 
 const useStyles = makeStyles({
+  heroImageContainer: {
+    position: 'absolute',
+    maxHeight: '130px',
+    overflow: 'hidden',
+    zIndex: -100,
+  },
+  heroImage: {
+    width: '700px',
+  },
   title: {
-    marginTop: '20px',
+    marginTop: '6px',
     marginBottom: '-25px',
   },
   titleFont: {
@@ -55,9 +65,9 @@ const useStyles = makeStyles({
   },
   subtitle: {},
   subtitleFont: {
-    background: '#ff1744',
+    background: theme.palette.primary.main,
     color: 'white',
-    padding: '0 50px',
+    padding: '0 60px',
   },
   textBox: {
     marginTop: '20px',
@@ -271,10 +281,13 @@ const IndexPage = () => {
           alignContent='center'
           spacing={3}
         >
+          <Grid className={classes.heroImageContainer} item>
+            <img className={classes.heroImage} src={baseball} alt='Baseball' />
+          </Grid>
           <Grid className={classes.title} item xs={12}>
             <Typography
               className={classes.titleFont}
-              variant='h3'
+              variant='h2'
               align='center'
             >
               <a href='/' className={classes.titleFontLink}>
@@ -284,8 +297,8 @@ const IndexPage = () => {
           </Grid>
           <Grid className={classes.subtitle} item>
             <div className={classes.subtitleFont}>
-              <Typography variant='h6' align='center'>
-                Be like Arl⛳️$$
+              <Typography variant='subtitle1' align='center'>
+                HIS NAME IS ARL⛳️$$
               </Typography>
             </div>
           </Grid>
@@ -389,7 +402,6 @@ const IndexPage = () => {
             <InputBase
               fullWidth
               inputProps={{ style: { fontSize: 24 } }}
-              inputLabelProps={{ style: { fontSize: 24 } }}
               type='text'
               placeholder='Your Arli$$ name'
               value={arlissifyName()}
