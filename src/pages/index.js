@@ -18,7 +18,6 @@ import {
 } from '@material-ui/core/styles'
 import baseball from '../images/baseball.png'
 import faker from 'faker'
-import { times, findIndex } from 'lodash'
 
 const hFonts = {
   fontFamily: "'Montserrat', 'Helvetica', 'Arial', sans-serif",
@@ -134,7 +133,7 @@ const sportsCharacterMap = {
   j: ['🏑'],
   l: ['🏒'],
   o: ['⚽️', '🏀', '🏈', '⚾️', '🏐', '🎾'],
-  r: ['🏌️‍♂️'],
+  r: ['🏌️‍'],
   y: ['🍸', '🍷'],
 }
 
@@ -150,7 +149,7 @@ const moneyCharacterMap = {
   m: ['₥'],
   n: ['₦'],
   o: ['💰', '🤑'],
-  p: ['₽', '₱'],
+  p: ['₱'],
   r: ['®'],
   s: ['$'],
   t: ['₮'],
@@ -219,19 +218,19 @@ const IndexPage = () => {
       return wordChars.join('')
     }
     let chars = word.split('').map((c) => c.toLowerCase())
-    let ind = findIndex(chars, (c) => c === 'a')
+    let ind = chars.findIndex((c) => c === 'a')
     if (ind > -1) {
       return spliceInStr('arliss', ind)
     }
-    ind = findIndex(chars, (c) => c === 'r')
+    ind = chars.findIndex((c) => c === 'r')
     if (ind > -1) {
       return spliceInStr('rliss', ind)
     }
-    ind = findIndex(chars, (c) => c === 'l')
+    ind = chars.findIndex((c) => c === 'l')
     if (ind > -1) {
       return spliceInStr('liss', ind)
     }
-    ind = findIndex(chars, (c) => c === 'i')
+    ind = chars.findIndex((c) => c === 'i')
     if (ind > -1) {
       return spliceInStr('iss', ind)
     }
@@ -281,7 +280,7 @@ const IndexPage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ width: '100%', height: '100%' }}>
+      <div style={{ padding: 24 }}>
         <Grid
           container
           direction='row'
@@ -354,9 +353,6 @@ const IndexPage = () => {
                 marks
                 min={0}
                 max={4}
-                valueLabelFormat={(value) => {
-                  return times(value, () => '$').join('')
-                }}
                 value={money}
                 onChange={handleMoneyChange}
               />
@@ -395,9 +391,6 @@ const IndexPage = () => {
                 marks
                 min={0}
                 max={4}
-                valueLabelFormat={(value) => {
-                  return times(value, () => '⛳️').join('')
-                }}
                 value={sports}
                 onChange={handleSportsChange}
               />
@@ -408,7 +401,7 @@ const IndexPage = () => {
                 variant='h5'
                 align='center'
               >
-                ⛳️🥃🏀🏌️‍♂️
+                ⛳️🥃🏀🏌️‍
               </Typography>
             </Grid>
           </Grid>

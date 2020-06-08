@@ -12,4 +12,4 @@ See <https://arliss.me>
 - `npm run build` -- Creates a production build
 - `npm run serve` -- Serves the production build locally; browse to <http://localhost:9000>
 - `npm run format` -- Runs the code linter
-- `npm run build-develop` -- Clean, build, and deploy to s3 bucket
+- `npm run build-deploy` -- Clean, build, and deploy to s3 bucket
