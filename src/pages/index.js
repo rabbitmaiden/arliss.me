@@ -202,6 +202,35 @@ const randomForCharacter = (
   return char
 }
 
+const moreArlissArliss = (word) => {
+  if (!word) {
+    return word
+  }
+  const spliceInStr = (str, ind) => {
+    let wordChars = word.split('')
+    wordChars.splice(ind, 1, str)
+    return wordChars.join('')
+  }
+  let chars = word.split('').map((c) => c.toLowerCase())
+  let ind = chars.findIndex((c) => c === 'a')
+  if (ind > -1) {
+    return spliceInStr('arliss', ind)
+  }
+  ind = chars.findIndex((c) => c === 'r')
+  if (ind > -1) {
+    return spliceInStr('rliss', ind)
+  }
+  ind = chars.findIndex((c) => c === 'l')
+  if (ind > -1) {
+    return spliceInStr('liss', ind)
+  }
+  ind = chars.findIndex((c) => c === 'i')
+  if (ind > -1) {
+    return spliceInStr('iss', ind)
+  }
+  return `${word}liss`
+}
+
 const IndexPage = () => {
   const classes = useStyles()
   const [name, setName] = useState('')
@@ -229,35 +258,6 @@ const IndexPage = () => {
       randomForCharacter(char, money, sports, moreArliss)
     )
     return newChars.join('')
-  }
-
-  const moreArlissArliss = (word) => {
-    if (!word) {
-      return word
-    }
-    const spliceInStr = (str, ind) => {
-      let wordChars = word.split('')
-      wordChars.splice(ind, 1, str).join('')
-      return wordChars.join('')
-    }
-    let chars = word.split('').map((c) => c.toLowerCase())
-    let ind = chars.findIndex((c) => c === 'a')
-    if (ind > -1) {
-      return spliceInStr('arliss', ind)
-    }
-    ind = chars.findIndex((c) => c === 'r')
-    if (ind > -1) {
-      return spliceInStr('rliss', ind)
-    }
-    ind = chars.findIndex((c) => c === 'l')
-    if (ind > -1) {
-      return spliceInStr('liss', ind)
-    }
-    ind = chars.findIndex((c) => c === 'i')
-    if (ind > -1) {
-      return spliceInStr('iss', ind)
-    }
-    return `${word}liss`
   }
 
   const handleNameChange = (e) => {
@@ -507,19 +507,20 @@ const IndexPage = () => {
             lg={6}
             container
             direction='row'
-            justify='flex-start'
+            justify='flex-end'
           >
             <Typography
               className={classes.linkFont}
-              variant='body2'
+              variant='body1'
               color='primary'
+              align='right'
             >
               <span>
                 * More Arli$$ should only be used in extreme circumstances
               </span>
               <br />
               <span>
-                Watch the{' '}
+                Questions? Watch the{' '}
                 <a
                   className={classes.linkFont}
                   href='https://twitter.com/GLucasTalkShow'
