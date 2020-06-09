@@ -86,10 +86,12 @@ const useStyles = makeStyles({
   button: {
     marginLeft: '8px',
     marginRight: '8px',
+    marginBottom: '8px',
   },
   minWidthButton: {
     marginLeft: '8px',
     marginRight: '8px',
+    marginBottom: '8px',
     minWidth: '140px',
   },
   arlissName: {
@@ -102,7 +104,7 @@ const useStyles = makeStyles({
     fontSize: 20,
   },
   linkGroup: {
-    marginTop: '40px',
+    marginTop: '30px',
   },
   linkFont: {
     fontSize: '8px',
@@ -280,7 +282,7 @@ const IndexPage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ padding: 24 }}>
+      <div style={{ overflow: 'hidden' }}>
         <Grid
           container
           direction='row'
@@ -430,7 +432,7 @@ const IndexPage = () => {
               disabled={!name}
               onClick={handleSpecial}
             >
-              {special ? 'Less Arli$$' : 'More Arli$$'}
+              {special ? 'Less Arli$$' : 'More Arli$$ *'}
             </Button>
             <Button
               className={classes.minWidthButton}
@@ -471,21 +473,26 @@ const IndexPage = () => {
             lg={6}
             container
             direction='row'
-            justify='flex-end'
+            justify='flex-start'
           >
             <Typography
               className={classes.linkFont}
               variant='body2'
               color='primary'
-              align='right'
             >
-              Watch the{' '}
-              <a
-                className={classes.linkFont}
-                href='https://twitter.com/GLucasTalkShow'
-              >
-                George Lucas Talk Show
-              </a>
+              <span>
+                * should only be used in rare situations
+              </span>
+              <br/>
+              <span>
+                Watch the{' '}
+                <a
+                  className={classes.linkFont}
+                  href='https://twitter.com/GLucasTalkShow'
+                >
+                  George Lucas Talk Show
+                </a>
+              </span>
               <br />
               <a
                 className={classes.linkFont}
