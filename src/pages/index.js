@@ -2,8 +2,13 @@
 import 'typeface-open-sans'
 import 'typeface-montserrat'
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import {
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Grid,
   Hidden,
   InputBase,
@@ -84,11 +89,13 @@ const useStyles = makeStyles({
     marginTop: '10px',
   },
   button: {
+    padding: '6px 6px',
     marginLeft: '8px',
     marginRight: '8px',
     marginBottom: '8px',
   },
   minWidthButton: {
+    padding: '6px 4px',
     marginLeft: '8px',
     marginRight: '8px',
     marginBottom: '8px',
@@ -159,7 +166,12 @@ const moneyCharacterMap = {
   y: ['￥'],
 }
 
-const randomForCharacter = (char, moneyThreshold, sportsThreshold) => {
+const randomForCharacter = (
+  char,
+  moneyThreshold,
+  sportsThreshold,
+  moreArliss
+) => {
   const moneyChar = faker.random.arrayElement(
     moneyCharacterMap[char.toLowerCase()] || []
   )
@@ -168,6 +180,11 @@ const randomForCharacter = (char, moneyThreshold, sportsThreshold) => {
   )
   const moneyRand = faker.random.number({ min: 0, max: 3 })
   const sportsRand = faker.random.number({ min: 0, max: 3 })
+
+  if (moreArliss && char === 's') {
+    return '$'
+  }
+
   if (moneyThreshold > moneyRand && sportsThreshold > sportsRand) {
     if (moneyThreshold > sportsThreshold && moneyChar) {
       return moneyChar
@@ -191,7 +208,9 @@ const IndexPage = () => {
   const [money, setMoney] = useState(0)
   const [sports, setSports] = useState(0)
   const [copying, setCopying] = useState(false)
-  const [special, setSpecial] = useState(false)
+  const [moreArliss, setMoreArliss] = useState(false)
+  const [openDialog, setOpenDialog] = useState(false)
+  const [hasMoreArlissed, setHasMoreArlissed] = useState(false)
 
   const arlissifyName = () => {
     faker.seed(hashStr(name))
@@ -201,16 +220,18 @@ const IndexPage = () => {
 
   const arlissifyWord = (word) => {
     let newWord = word
-    if (special) {
-      newWord = specialArliss(word)
+    if (moreArliss) {
+      newWord = moreArlissArliss(word)
     }
 
     const chars = newWord.split('')
-    let newChars = chars.map((char) => randomForCharacter(char, money, sports))
+    let newChars = chars.map((char) =>
+      randomForCharacter(char, money, sports, moreArliss)
+    )
     return newChars.join('')
   }
 
-  const specialArliss = (word) => {
+  const moreArlissArliss = (word) => {
     if (!word) {
       return word
     }
@@ -251,8 +272,20 @@ const IndexPage = () => {
     setSports(value)
   }
 
-  const handleSpecial = () => {
-    setSpecial(!special)
+  const handleMoreArliss = () => {
+    if (!moreArliss && !hasMoreArlissed) {
+      setOpenDialog(true)
+      return
+    }
+    setMoreArliss(!moreArliss)
+  }
+
+  const handleCloseDialog = (e, value) => {
+    setOpenDialog(false)
+    if (value) {
+      setHasMoreArlissed(true)
+      setMoreArliss(true)
+    }
   }
 
   const handleCopy = () => {
@@ -264,16 +297,17 @@ const IndexPage = () => {
   const handleReset = () => {
     setMoney(0)
     setSports(0)
-    setSpecial(false)
+    setMoreArliss(false)
   }
 
   const handleClear = () => {
     handleReset()
     setName('')
+    setHasMoreArlissed(false)
   }
 
   const canReset = () => {
-    return money !== 0 || sports !== 0 || special
+    return money !== 0 || sports !== 0 || moreArliss
   }
 
   const canClear = () => {
@@ -430,9 +464,9 @@ const IndexPage = () => {
               color='primary'
               variant='outlined'
               disabled={!name}
-              onClick={handleSpecial}
+              onClick={handleMoreArliss}
             >
-              {special ? 'Less Arli$$' : 'More Arli$$ *'}
+              {moreArliss ? 'Less Arli$$' : 'More Arli$$ *'}
             </Button>
             <Button
               className={classes.minWidthButton}
@@ -481,9 +515,9 @@ const IndexPage = () => {
               color='primary'
             >
               <span>
-                * should only be used in rare situations
+                * More Arli$$ should only be used in extreme circumstances
               </span>
-              <br/>
+              <br />
               <span>
                 Watch the{' '}
                 <a
@@ -504,7 +538,69 @@ const IndexPage = () => {
           </Grid>
         </Grid>
       </div>
+      <ConfirmationDialog
+        classes={{ ...classes }}
+        keepMounted
+        id='confirm-more-arliss'
+        open={openDialog}
+        onClose={handleCloseDialog}
+      />
     </ThemeProvider>
   )
 }
+
+const ConfirmationDialog = (props) => {
+  const { onClose, open, classes, ...other } = props
+  const handleCancel = (e) => {
+    onClose(e)
+  }
+
+  const handleOk = (e) => {
+    onClose(e, true)
+  }
+
+  return (
+    <Dialog
+      maxWidth='xs'
+      aria-labelledby='confirmation-dialog-title'
+      open={open}
+      {...other}
+      onBackdropClick={handleCancel}
+      onEscapeKeyDown={handleCancel}
+    >
+      <DialogTitle id='confirm-more-arliss'>More Arli$$</DialogTitle>
+      <DialogContent dividers>
+        <Typography variant='body2'>
+          More Arli$$ should only be used in extreme circumstances. Are you
+          sure?
+        </Typography>
+      </DialogContent>
+      <DialogActions>
+        <Button
+          className={classes.button}
+          onClick={handleCancel}
+          color='secondary'
+          variant='outlined'
+        >
+          Cancel
+        </Button>
+        <Button
+          className={classes.button}
+          onClick={handleOk}
+          color='primary'
+          variant='outlined'
+        >
+          Ye$$
+        </Button>
+      </DialogActions>
+    </Dialog>
+  )
+}
+
+ConfirmationDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  classes: PropTypes.object.isRequired,
+}
+
 export default IndexPage
