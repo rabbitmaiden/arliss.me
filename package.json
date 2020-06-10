@@ -21,17 +21,22 @@
     "typeface-open-sans": "0.0.75"
   },
   "devDependencies": {
+    "babel-jest": "^26.0.1",
+    "babel-preset-gatsby": "^0.4.9",
+    "jest": "^26.0.1",
     "prettier": "2.0.5"
   },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "lint": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "deploy": "env $(cat .env) gatsby-plugin-s3 deploy --yes",
-    "build-deploy": "npm run clean; npm run build; npm run deploy"
+    "build-deploy": "npm run clean; npm run build; npm run deploy",
+    "test": "jest --watch",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
