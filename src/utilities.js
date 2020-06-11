@@ -123,7 +123,7 @@ const addMoreArliss = (word) => {
   matcher = /(ar)/i
   result = matcher.exec(word)
   if (result) {
-    const [_, match1] = result
+    const [, match1] = result
     return spliceInStr(result.index, match1.length, 'arliss')
   }
 
@@ -131,7 +131,7 @@ const addMoreArliss = (word) => {
   matcher = /(([aeiou])r\w?l([aeiou])?s?s?)/i
   result = matcher.exec(word)
   if (result) {
-    const [_, match1, match2, match3] = result
+    const [, match1, match2] = result
     return spliceInStr(result.index, match1.length, `${match2 || 'a'}rliss`)
   }
 
@@ -139,7 +139,7 @@ const addMoreArliss = (word) => {
   matcher = /(([aeiou])rl?([aeiou])?s?s?)/i
   result = matcher.exec(word)
   if (result) {
-    const [_, match1, match2, match3] = result
+    const [, match1, match2, match3] = result
     return spliceInStr(
       result.index,
       match1.length,
@@ -151,7 +151,7 @@ const addMoreArliss = (word) => {
   matcher = /(ar?l?([aeiou])?s?s?)/i
   result = matcher.exec(word)
   if (result) {
-    const [_, match1, match2] = result
+    const [, match1, match2] = result
     return spliceInStr(result.index, match1.length, `arl${match2 || 'i'}ss`)
   }
 
@@ -159,7 +159,7 @@ const addMoreArliss = (word) => {
   matcher = /((a)?(r)?l([aeiou])?s?s?)/i
   result = matcher.exec(word)
   if (result) {
-    const [_, match1, match2, match3, match4] = result
+    const [, match1, match2, match3, match4] = result
     return spliceInStr(
       result.index,
       match1.length,
