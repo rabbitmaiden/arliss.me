@@ -50,6 +50,7 @@ const theme = createMuiTheme({
 const useStyles = makeStyles({
   heroImageContainer: {
     position: 'absolute',
+    top: 0,
     maxHeight: '130px',
     overflow: 'hidden',
     zIndex: -100,
