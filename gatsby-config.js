@@ -4,6 +4,7 @@ module.exports = {
     description: `Arliss.me`,
   },
   plugins: [
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
