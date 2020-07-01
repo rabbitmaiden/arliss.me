@@ -115,8 +115,11 @@ const useStyles = makeStyles({
     marginTop: '30px',
   },
   linkFont: {
-    fontSize: '8px',
-    textDecoration: 'none',
+    fontSize: '14px',
+  },
+  link: {
+    textDecoration: 'underline',
+    color: theme.palette.primary.main,
   },
 })
 
@@ -396,15 +399,21 @@ const IndexPage = () => {
               <span>
                 Questions? Watch the{' '}
                 <a
-                  className={classes.linkFont}
+                  className={classes.link}
                   href='https://twitter.com/GLucasTalkShow'
                 >
                   George Lucas Talk Show
                 </a>
               </span>
               <br />
+              <span>
+                <a className={classes.link} href='https://1600penn.me'>
+                  1600Penn.me
+                </a>
+              </span>
+              <br />
               <a
-                className={classes.linkFont}
+                className={classes.link}
                 href='https://github.com/mstubna/arliss.me'
               >
                 Source
