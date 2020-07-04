@@ -19,5 +19,17 @@ module.exports = {
         bucketName: 'arliss.me',
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Arliss.me`,
+        short_name: `Arliss.me`,
+        start_url: `/`,
+        background_color: `#A9173C`,
+        theme_color: `#A9173C`,
+        display: `minimal-ui`,
+        icon: `src/images/baseball_icon.png`,
+      },
+    },
   ],
 }

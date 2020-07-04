@@ -2,6 +2,7 @@
 import 'typeface-open-sans'
 import 'typeface-montserrat'
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import {
   Button,
@@ -22,6 +23,7 @@ import {
   ThemeProvider,
 } from '@material-ui/core/styles'
 import baseball from '../images/baseball.png'
+import baseballIcon from '../images/baseball_icon.png'
 import { arlissify } from '../utilities'
 
 const hFonts = {
@@ -115,7 +117,7 @@ const useStyles = makeStyles({
     marginTop: '30px',
   },
   linkFont: {
-    fontSize: '14px',
+    fontSize: '12px',
   },
   link: {
     textDecoration: 'underline',
@@ -193,6 +195,17 @@ const IndexPage = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Helmet>
+        <title>Arliss.me</title>
+        <meta property='og:title' content='Arliss.me' />
+        <meta property='og:description' content='Arli$$ name generator' />
+        <meta property='og:image' content={baseballIcon} />
+        <meta property='og:url' content='https://arliss.me' />
+        <meta name='twitter:title' content='Arliss.me' />
+        <meta name='twitter:description' content='Arli$$ name generator' />
+        <meta name='twitter:image' content={baseballIcon} />
+        <meta name='twitter:card' content={baseballIcon} />
+      </Helmet>
       <div style={{ overflow: 'hidden' }}>
         <Grid
           container
