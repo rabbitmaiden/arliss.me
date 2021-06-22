@@ -22,7 +22,7 @@ import {
   makeStyles,
   ThemeProvider,
 } from '@material-ui/core/styles'
-import baseball from '../images/baseball.png'
+import arliss from '../images/arliss.jpg'
 import baseballIcon from '../images/baseball_icon.png'
 import { arlissify } from '../utilities'
 
@@ -51,14 +51,10 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles({
   heroImageContainer: {
-    position: 'absolute',
-    top: 0,
-    maxHeight: '130px',
-    overflow: 'hidden',
-    zIndex: -100,
+    margin: '25px 0px 0px'
   },
   heroImage: {
-    width: '700px',
+    width: '400px',
   },
   title: {
     marginTop: '6px',
@@ -196,12 +192,12 @@ const IndexPage = () => {
   return (
     <ThemeProvider theme={theme}>
       <Helmet>
-        <title>Arliss.me</title>
-        <meta property='og:title' content='Arliss.me' />
+        <title>Arliss.us</title>
+        <meta property='og:title' content='Arliss.us' />
         <meta property='og:description' content='Arli$$ name generator' />
         <meta property='og:image' content={baseballIcon} />
-        <meta property='og:url' content='https://arliss.me' />
-        <meta name='twitter:title' content='Arliss.me' />
+        <meta property='og:url' content='https://arliss.us' />
+        <meta name='twitter:title' content='Arliss.us' />
         <meta name='twitter:description' content='Arli$$ name generator' />
         <meta name='twitter:image' content={baseballIcon} />
         <meta name='twitter:card' content={baseballIcon} />
@@ -214,33 +210,14 @@ const IndexPage = () => {
           alignContent='center'
           spacing={3}
         >
-          <Hidden xsDown>
-            <Grid className={classes.heroImageContainer} item show>
-              <img
-                className={classes.heroImage}
-                src={baseball}
-                alt='Baseball'
-              />
-            </Grid>
-          </Hidden>
-          <Grid className={classes.title} item xs={12}>
-            <Typography
-              className={classes.titleFont}
-              variant='h2'
-              align='center'
-            >
-              <a href='/' className={classes.titleFontLink}>
-                Arliss.me
-              </a>
-            </Typography>
+          <Grid className={classes.heroImageContainer} item show>
+            <img
+              className={classes.heroImage}
+              src={arliss}
+              alt='arliss.me'
+            />
           </Grid>
-          <Grid className={classes.subtitle} item>
-            <div className={classes.subtitleFont}>
-              <Typography variant='subtitle1' align='center'>
-                HIS NAME IS ARL⛳️$$
-              </Typography>
-            </div>
-          </Grid>
+
           <Grid container direction='row' justify='center' item xs={12}>
             <Grid className={classes.textBox} item xs={10} md={8} lg={6}>
               <TextField
@@ -425,11 +402,13 @@ const IndexPage = () => {
                 </a>
               </span>
               <br />
+              Hosting by <a href="https://malice.city/">Alice, an adult</a>
+              <br/>
               <a
                 className={classes.link}
                 href='https://github.com/mstubna/arliss.me'
               >
-                Source
+                Original Source by Mike Stubna
               </a>
             </Typography>
           </Grid>
